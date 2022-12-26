@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}
+Total URL Clicks
+{% endblock %}
+
+{% block content %}
+
+{% include "shortURL/navbar.html" %}
+<section class="count u-margin-top-huge">
+  <div class="count__row">
+    <h2 class="heading-2">Total URL Clicks</h2>
+    <p>The total number of clicks that your link has received so far.</p>
+  </div>
+  <div class="count__row">
+    <div class="count__number">{{ counts }}</div>
+  </div>
+  <div class="count__row">
+    <p>Our tool will count each click as one hit to the long URL, even if there are multiple clicks from the same person
+      or device. Check <a href="/url-click-counter" class="count__link">the total number of clicks</a> from other URL.
+    </p>
+  </div>
+  <div class="count__row">
+    <a href="/" class="count__btn">Create other shortened URL</a>
+  </div>
+</section>
+
+{% endblock %}
