@@ -55,6 +55,7 @@ body {
   font-size: 5.25rem;
   font-weight: 800;
   color: #2c87c5;
+  text-shadow: 0 5px 6px rgba(0, 0, 0, 0.25);
 }
 
 .heading-2 {
@@ -296,7 +297,7 @@ body {
 }
 
 .report {
-  min-height: 62.5vh;
+  min-height: 65.2vh;
 }
 .report .row {
   font-size: 1.45rem;
