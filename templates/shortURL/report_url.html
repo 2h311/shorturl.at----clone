@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}
+Report Malicious URL - ShortURL
+{% endblock %}
+
+{% block content %}
+{% include "shortURL/navbar.html" %}
+
+{% if report_response == "true" %}
+<section class="report">
+  <div class="row">
+    <h2 class="heading-2">Report Malicious Short Link</h2>
+    <p>Thank you, the URL has been sent to our team and will be checked within a few hours.</p>
+  </div>
+</section>
+{% elif report_response == "false" %}
+<section class="report">
+  <div class="row">
+    <h2 class="heading-2">Report Malicious Short Link</h2>
+    <p>The code is wrong, <a href="javascript: history.back();">click here</a> to send the URL again.</p>
+  </div>
+</section>
+{% else %}
+<section class="report u-margin-bottom-huge">
+  <div class="row">
+    <h1 class="heading-2">Report Malicious Short Link</h1>
+    <p class="u-margin-bottom-medium">
+      Use the form below to report URLs that are distributing spam and malware. Help us by sending links that are
+      against our terms of use, we will delete and block these shortened links. If spammers are sending you e-mails
+      containing our shortened URLs, tell us and we can take quick action to avoid the distribution of inappropriate
+      links.
+    </p>
+    <form action="/report-malicious-url" method="post" class="report-form js-form">
+      <div class="report-form__group u-margin-bottom-small">
+        <label for="malicious-url">Invalid or malicious URL</label>
+        <input type="text" id="malicious-url" class="report-form__input" name="malicious-url"
+          placeholder="shorturl.at/AbCdE" required>
+      </div>
+
+      <div class="report-form__group u-margin-bottom-small">
+        <label for="malicious-url">Comment</label>
+        <textarea name="message" class="report-form__textarea" id="message-box" cols="30" rows="5"></textarea>
+      </div>
+
+      <div class="report-form__group report-form__group--questions u-margin-bottom-small">
+        <p>{{ value1 }} + {{ value2 }} =</p>
+        <input type="text" name="math_answer" id="math_answer" class="report-form__input report-form__answer" required>
+        <input type="hidden" name="value1" value={{ value1 }}>
+        <input type="hidden" name="value2" value={{ value2 }}>
+      </div>
+
+      <div class="report-form__group report-form__group--buttons">
+        <button class="report-form__send-btn contact-form__button contact-form__button--submit"
+          type="submit">Send</button>
+        <button class="contact-form__button contact-form__button--clean js-clean-btn" type="button">Clean</button>
+      </div>
+    </form>
+  </div>
+</section>
+{% endif %}
+{% endblock %}

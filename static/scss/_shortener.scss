@@ -1,0 +1,102 @@
+.shorturl-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+  width: 82rem;
+  margin: 2rem auto;
+  margin-bottom: 13.8rem;
+  padding: 2rem 5rem;
+  font-size: 1.5rem;
+}
+
+.shorturl-row {
+  max-width: 62rem;
+}
+
+.result {
+  border-radius: 3px;
+  background-color: #fff;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, .15);
+  padding: 3rem 5rem;
+
+  &__group {
+    display: flex;
+    justify-content: center;
+    position: relative;
+  }
+
+  .result__link {
+    word-wrap: break-word;
+    line-height: 1.25;
+
+    &,
+    &:link,
+    &:active {
+      text-decoration: none;
+      color: #006cff;
+    }
+  }
+
+  &__text {
+    padding: 1rem 1.5rem;
+    font-size: 1.5rem;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border: 1px solid #bbb;
+    font-family: inherit;
+  }
+
+  &__btn {
+    background-color: #2c87c5;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.4rem;
+    padding: 1rem 1.6rem;
+    border: 0;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    margin-left: -2px;
+    cursor: pointer;
+  }
+
+  &__notification {
+    background-color: #243a4f;
+    color: #fff;
+    font-size: 1.2rem;
+    padding: .85rem;
+    border-radius: 3px;
+    margin-top: 5px;
+    display: none;
+    cursor: pointer;
+
+    position: absolute;
+    top: 4rem;
+    right: 5rem;
+  }
+}
+
+.share__button {
+  text-decoration: none;
+  color: #fff;
+  padding: 1rem 1.7rem;
+  border-radius: 3px;
+  font-size: 1.2rem;
+  font-weight: 500;
+
+  &--facebook {
+    background-color: #3b5998;
+  }
+
+  &--twitter {
+    background-color: #55acee;
+  }
+
+  &--pinterest {
+    background-color: #d4374f;
+  }
+
+  &--tumblr {
+    background-color: #243a4f;
+  }
+}

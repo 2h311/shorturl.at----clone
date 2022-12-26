@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}
+Shortened URL
+{% endblock %}
+
+{% block content %}
+{% include "shortURL/navbar.html" %}
+<main class="shorturl-container">
+  <section class="shorturl-row">
+    <h2 class="heading-2">Your Shortened URL</h2>
+    <p>Copy the shortened link and share it in messages, texts, posts, websites and other locations.</p>
+  </section>
+
+  <section class="shorturl-row">
+    <div class="result">
+      <div class="result__group u-margin-bottom-medium">
+        <input type="text" class="result__text js-shorten-input" id="shortened-url" value={{ shortened_url }}>
+        <button class="result__btn result__btn--copy js-copy-to-clipboard-btn">Copy URL</button>
+        <div class="result__notification js-result-notification">URL Copied</div>
+      </div>
+      <div class="result__texts">
+        <p class="u-margin-bottom-medium">Long URL:
+          <a class="result__link" href={{ long_url }}>{{ long_url }}</a>
+        </p>
+
+        <p class="">Track <a class="result__link" href="/url-click-counter">the total of clicks</a> in real-time from
+          your shortened URL.</p>
+        <p>Create other <a class="result__link" href="/">shortened URL</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="shorturl-row">
+    <div class="share">
+      <h2 class="heading-3 u-margin-bottom-small">Share URL</h2>
+      <div class="share__buttons">
+        <a href="#" class="share__button share__button--facebook">Facebook</a>
+        <a href="#" class="share__button share__button--twitter">Twitter</a>
+        <a href="#" class="share__button share__button--pinterest">Pinterest</a>
+        <a href="#" class="share__button share__button--tumblr">Tumblr</a>
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock %}

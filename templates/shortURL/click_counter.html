@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}
+Terms of service - ShortURL
+{% endblock %}
+
+{% block content %}
+
+{% include "shortURL/navbar.html" %}
+<section class="counter">
+  <div class="counter__row">
+    <h2 class="heading-2">URL Click Counter</h2>
+    <p>Enter the URL to find out how many clicks it has received so far.</p>
+  </div>
+  <div class="counter__row"></div>
+  <div class="counter__row">
+    <p>* Track the total hits of the shortened URL in real time, you do not have to register.</p>
+  </div>
+</section>
+
+{% endblock %}

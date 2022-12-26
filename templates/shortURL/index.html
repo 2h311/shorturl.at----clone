@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block title %}
+URL Shortener
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row u-margin-bottom-medium">
+    <header class="header">
+      <a href="#" class="header__link">
+        <h1 class="heading-1">Short URL</h1>
+      </a>
+    </header>
+  </div>
+
+  <div class="row u-margin-bottom-medium">
+    <section class="main-section">
+      <h2 class="heading-2 u-margin-bottom-small">Paste the URL to be shortened</h2>
+      <form class="form" method="POST" action="/shortener">
+        <input type="text" class="form__input" name="link" placeholder="Enter the link here">
+        <button type="submit" class="btn btn--submit">Shorten URL</button>
+      </form>
+      <p class="main__text">
+        <span>ShortURL.at is a free tool to shorten a URL or reduce a link</span><br>
+        <span>Use our URL Shortener to create a shortened link making it easy to remember</span>
+      </p>
+    </section>
+  </div>
+
+  <div class="row u-margin-bottom-medium">
+    <section class="main-cta">
+      <h3 class="heading-3 u-margin-bottom-small">Want More? Try Premium Features!</h3>
+      <p class="main__text">
+        Custom short links, powerful dashboard, detailed analytics, API, UTM builder, QR codes, browser extension, 50+
+        app integrations and support. Only $14/month.
+      </p>
+      <a href="https://httpslink.com/b7vm" target="_blank" rel="noopener" class="btn btn--cta u-margin-bottom-small">Go
+        Premium</a>
+      <a href="https://httpslink.com/q6ps" target="_blank" rel="noopener" class="main-cta__link">
+        Sign up free at
+        <img src="{{ url_for('static', path='images/rebrandly-logo.svg') }}" alt="rebrandly image">
+      </a>
+    </section>
+  </div>
+
+  <div class="row u-margin-bottom-medium">
+    <section class="content">
+      <div class="content-div--1">
+        <h3 class="heading-3">Simple and fast URL shortener!</h3>
+        <p class="main__text u-margin-bottom-small">
+          ShortURL allows to reduce long links from Instagram, Facebook, YouTube, Twitter, Linked In and top sites on
+          the
+          Internet, just paste the long URL and click the Shorten URL button. On the next screen, copy the shortened URL
+          and share it on websites, chat and e-mail. After shortening the URL, check how many clicks it received.
+        </p>
+        <h3 class="heading-3">Shorten, share and track</h3>
+        <p class="main__text">
+          Your shortened URLs can be used in publications, documents, advertisements, blogs, forums, instant messages,
+          and other
+          locations. Track statistics for your business and projects by monitoring the number of hits from your URL with
+          the click
+          counter, you do not have to register.
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <div class="row u-margin-bottom-huge">
+    <section class="icon-box">
+      <div class="icon-box__inner">
+        <i class="fa-solid fa-hand-point-left icon-box__icon"></i>
+        <h4 class="heading-4 icon-box__heading">Easy</h4>
+        <p class="icon-box__text">ShortURL is easy and fast, enter the long link to get your shortened link</p>
+      </div>
+
+      <div class="icon-box__inner">
+        <i class="fa-solid fa-link"></i>
+        <h4 class="heading-4 icon-box__heading">Shortened</h4>
+        <p class="icon-box__text">Use any link, no matter what size, ShortURL always shortens</p>
+      </div>
+
+      <div class="icon-box__inner">
+        <i class="fa-solid fa-shield-halved"></i>
+        <h4 class="heading-4 icon-box__heading">Secure</h4>
+        <p class="icon-box__text">It is fast and secure, our service have HTTPS protocol and data encryption</p>
+      </div>
+
+      <div class="icon-box__inner">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <h4 class="heading-4 icon-box__heading">Statistics</h4>
+        <p class="icon-box__text">Check the amount of clicks that your shortened url received</p>
+      </div>
+
+      <div class="icon-box__inner">
+        <i class="fa-solid fa-hand"></i>
+        <h4 class="heading-4 icon-box__heading">Reliable</h4>
+        <p class="icon-box__text">
+          All links that try to disseminate spam, viruses and malware are deleted
+        </p>
+      </div>
+
+      <div class="icon-box__inner">
+        <i class="fa-solid fa-laptop"></i>
+        <h4 class="heading-4 icon-box__heading">Devices</h4>
+        <p class="icon-box__text">
+          Compatible with smartphones, tablets and desktop
+        </p>
+      </div>
+    </section>
+  </div>
+
+
+</div>
+{% endblock %}

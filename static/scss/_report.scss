@@ -1,0 +1,52 @@
+.report {
+  min-height: 61.5vh;
+
+  .row {
+    font-size: 1.45rem;
+    line-height: 1.6;
+    width: 55%;
+    margin: 5rem auto;
+  }
+
+  &-form {
+    background-color: #fff;
+    box-shadow: 0 2.5px 4px #ccc;
+    max-width: fit-content;
+    padding: 2rem 3rem;
+    font-size: 1.65rem;
+    border-radius: 3px;
+    max-width: 40rem;
+
+    &__group {
+      display: flex;
+      flex-direction: column;
+
+      &--buttons,
+      &--questions {
+        flex-direction: row;
+        gap: 1rem;
+      }
+
+      &--buttons {
+        justify-content: flex-end;
+      }
+
+      &--questions {
+        align-items: center;
+      }
+    }
+
+    &__input,
+    &__textarea {
+      padding: .8rem;
+      border-radius: 1px;
+      border: 1px solid #b6b6b6;
+      font-size: 1.5rem;
+      font-family: inherit;
+    }
+
+    &__answer {
+      max-width: 4.5rem;
+    }
+  }
+}

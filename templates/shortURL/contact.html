@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}
+Contact - ShortURL
+{% endblock %}
+
+{% block content %}
+{% include "shortURL/navbar.html" %}
+
+{% if show_message %}
+<section class="contact-box">
+  <div class="contact-row">
+    <h2 class="heading-2 u-margin-bottom-small">Contact our Team</h2>
+    <p>Your message has been sent to our team</p>
+  </div>
+</section>
+{% else %}
+<section class="contact-box">
+  <div class="contact-row">
+    <h2 class="heading-2 u-margin-bottom-small">Contact our Team</h2>
+    <form action="/contact" class="contact-form js-form" method="post">
+
+      <div class="contact-form__group u-margin-bottom-small">
+        <label for="fullname" class="contact-form__label">Name</label>
+        <input type="text" class="contact-form__input" id="fullname" name="fullname" required>
+      </div>
+
+      <div class="contact-form__group u-margin-bottom-small">
+        <label for="email" class="contact-form__label">E-mail</label>
+        <input type="text" class="contact-form__input" id="email" name="email">
+      </div>
+
+      <div class="contact-form__group u-margin-bottom-small">
+        <label for="message" class="contact-form__label">Message</label>
+        <textarea class="contact-form__textarea" name="message" id="message" cols="30" rows="6"></textarea>
+      </div>
+
+      <div class="contact-form__group contact-form__group--buttons">
+        <button class="contact-form__button contact-form__button--submit" type="submit">Send</button>
+        <button class="contact-form__button contact-form__button--clean js-clean-btn" type="button">Clean</button>
+      </div>
+
+    </form>
+  </div>
+</section>
+{% endif %}
+{% endblock %}
