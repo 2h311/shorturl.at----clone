@@ -89,6 +89,17 @@ def counter(request: Request):
 	})
 
 
+@router.post("/url-total-clicks")
+def total_clicks(request: Request, shortened_url: str = Form(...)):
+	counts = 0
+	print(shortened_url)
+	
+	return templates.TemplateResponse("shortURL/total_clicks.html", context={
+		"request": request,
+		"counts": counts,
+	})
+
+
 @router.get("/terms-of-service")
 def terms_of_service(request: Request):
 	return templates.TemplateResponse("shortURL/terms_of_service.html", context={
