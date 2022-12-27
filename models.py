@@ -3,8 +3,8 @@ from deta import Deta
 from config import settings
 
 
-deta = Deta(settings.PROJECT_DETABASE_KEY)
-db = deta.Base(settings.PROJECT_DETABASE_NAME)
+deta = Deta(settings.PROJECT_DATABASE_KEY)
+db = deta.Base(settings.PROJECT_DATABASE_NAME)
 
 
 class ShortLinkSchema:

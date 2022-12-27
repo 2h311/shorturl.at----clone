@@ -1,7 +1,7 @@
 import string
 import random
 
-from fastapi import FastAPI, Request, APIRouter, Form
+from fastapi import FastAPI, Request, APIRouter, Form, Depends
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
@@ -10,7 +10,11 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 from deta import Deta
 from config import settings
 
-from models import create_new_link, read_one_link, update_one_link_count, read_one_link_count
+from models import (create_new_link, 
+					read_one_link, 
+					update_one_link_count,
+					read_one_link_count,
+				)
 
 
 templates = Jinja2Templates(directory="templates")
@@ -35,7 +39,7 @@ async def shorten_url(request: Request, link: str = Form(...)):
 	})
 	return templates.TemplateResponse("shortURL/shortener.html", context={
 		"request": request,
-		"shortened_url": random_str,
+		"shortened_url": settings.PROJECT_DOMAIN_DEV + random_str,
 		"long_url": link,
 	})
 
@@ -98,9 +102,9 @@ async def counter(request: Request):
 	})
 
 
-@router.post("/url-total-clicks")
-async def total_clicks(request: Request, shortened_url: str = Form(...)):
-	string = shortened_url.split("/")[-1]
+@router.get("/url-total-clicks")
+async def total_clicks(request: Request, u: str):
+	string = u.split("/")[-1]
 	counts = read_one_link_count(string)
 	print(counts)
 	return templates.TemplateResponse("shortURL/total_clicks.html", context={
