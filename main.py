@@ -121,9 +121,9 @@ async def terms_of_service(request: Request):
 
 
 @router.get("/{short_url}")
-async def read_url(short_url: str):
+async def read_url(request: Request, short_url: str):
 	response = read_one_link(short_url)
-	if response:
+	if response.items:
 		# fetch original link from detabase
 		original_link = response.items[-1].get("long_url")
 		# update the count of the link from detabase
