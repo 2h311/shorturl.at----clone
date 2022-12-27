@@ -7,6 +7,7 @@ from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
+from deta import Deta
 from config import Settings
 
 
@@ -16,14 +17,14 @@ app = FastAPI(title=Settings.PROJECT_TITLE, version=Settings.PROJECT_VERSION)
 
 
 @router.get("/")
-def index(request: Request):
+async def index(request: Request):
 	return templates.TemplateResponse("shortURL/index.html", context={
 		"request": request,
 	})
 
 
 @router.post("/shortener")
-def shorten_url(request: Request, link: str = Form(...)):
+async def shorten_url(request: Request, link: str = Form(...)):
 	random_str = ''.join(random.choices(string.ascii_letters + string.digits, k=5))
 	print(random_str)
 	return templates.TemplateResponse("shortURL/shortener.html", context={
@@ -34,14 +35,14 @@ def shorten_url(request: Request, link: str = Form(...)):
 
 
 @router.get("/contact")
-def contact(request: Request):
+async def contact(request: Request):
 	return templates.TemplateResponse("shortURL/contact.html", context={
 		"request": request,
 	})
 
 
 @router.post("/contact")
-def contact(request: Request, fullname: str = Form(...), email: str = Form(...), message: str = Form(...)):
+async def contact(request: Request, fullname: str = Form(...), email: str = Form(...), message: str = Form(...)):
 	data = {
 		"fullname": fullname,
 		"email": email,
@@ -54,14 +55,14 @@ def contact(request: Request, fullname: str = Form(...), email: str = Form(...),
 
 
 @router.get("/privacy-policy")
-def privacy(request: Request):
+async def privacy(request: Request):
 	return templates.TemplateResponse("shortURL/privacy.html", context={
 		"request": request,
 	})
 
 
 @router.get("/report-malicious-url")
-def report(request: Request):
+async def report(request: Request):
 	return templates.TemplateResponse("shortURL/report_url.html", context={
 		"request": request, 
 		"value1": random.randint(1, 9),
@@ -70,7 +71,7 @@ def report(request: Request):
 
 
 @router.post("/report-malicious-url")
-def report(request: Request, value1: str = Form(...), value2: str = Form(...), math_answer: str = Form(...)):
+async def report(request: Request, value1: str = Form(...), value2: str = Form(...), math_answer: str = Form(...)):
 	answer = int(value1) + int(value2)
 	if answer == int(math_answer):
 		return templates.TemplateResponse("shortURL/report_url.html", context={
@@ -85,14 +86,14 @@ def report(request: Request, value1: str = Form(...), value2: str = Form(...), m
 
 
 @router.get("/url-click-counter")
-def counter(request: Request):
+async def counter(request: Request):
 	return templates.TemplateResponse("shortURL/click_counter.html", context={
 		"request": request,
 	})
 
 
 @router.post("/url-total-clicks")
-def total_clicks(request: Request, shortened_url: str = Form(...)):
+async def total_clicks(request: Request, shortened_url: str = Form(...)):
 	counts = 0
 	print(shortened_url)
 	
@@ -103,7 +104,7 @@ def total_clicks(request: Request, shortened_url: str = Form(...)):
 
 
 @router.get("/terms-of-service")
-def terms_of_service(request: Request):
+async def terms_of_service(request: Request):
 	return templates.TemplateResponse("shortURL/terms_of_service.html", context={
 		"request": request,
 	})
