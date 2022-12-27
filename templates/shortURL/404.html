@@ -1,5 +1,19 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="heading-1">404</h1>
+
+<main class="invalid">
+  <div class="invalid__top">
+    <a href="/" class="">
+      <h2 class="">Short URL</h2>
+    </a>
+  </div>
+  <h1 class="invalid__heading">404</h1>
+  <h2>Page not found!</h2>
+  <p>The page you are looking for might have been removed, had its name changed or is unavailable.</p>
+  <div>
+    <a href="/">Return to home page</a>
+  </div>
+</main>
+
 {% endblock %}

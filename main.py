@@ -5,12 +5,14 @@ from fastapi import FastAPI, Request, APIRouter, Form
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
+from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from config import Settings
 
 
 templates = Jinja2Templates(directory="templates")
 router = APIRouter()
+app = FastAPI(title=Settings.PROJECT_TITLE, version=Settings.PROJECT_VERSION)
 
 
 @router.get("/")
@@ -107,6 +109,12 @@ def terms_of_service(request: Request):
 	})
 
 
-app = FastAPI(title=Settings.PROJECT_TITLE, version=Settings.PROJECT_VERSION)
+@app.exception_handler(StarletteHTTPException)
+async def invalid_routes(request: Request, ecx: StarletteHTTPException):
+	return templates.TemplateResponse("shortURL/404.html", context={
+		"request": request,
+	})
+
+
 app.mount("/static", StaticFiles(directory="static"), name="static")
 app.include_router(router)

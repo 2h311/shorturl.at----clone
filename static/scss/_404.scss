@@ -1,0 +1,12 @@
+.invalid {
+  min-height: 100vh;
+  font-size: 1.35rem;
+  color: #222;
+
+  // background-color: aqua;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

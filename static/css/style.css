@@ -506,4 +506,14 @@ body {
   display: inline-block;
 }
 
+.invalid {
+  min-height: 100vh;
+  font-size: 1.35rem;
+  color: #222;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 /*# sourceMappingURL=style.css.map */
