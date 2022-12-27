@@ -15,3 +15,6 @@ class Settings:
 	PROJECT_VERSION: str = "No Version - Just A Clone"
 
 	PROJECT_DETABASE_KEY = os.getenv("DETABASE_KEY")
+	PROJECT_DETABASE_NAME = os.getenv("DETABASE_NAME")
+
+settings = Settings()

@@ -2,18 +2,20 @@ import string
 import random
 
 from fastapi import FastAPI, Request, APIRouter, Form
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from deta import Deta
-from config import Settings
+from config import settings
+
+from models import create_new_link, read_one_link, update_one_link_count, read_one_link_count
 
 
 templates = Jinja2Templates(directory="templates")
 router = APIRouter()
-app = FastAPI(title=Settings.PROJECT_TITLE, version=Settings.PROJECT_VERSION)
+app = FastAPI(title=settings.PROJECT_TITLE, version=settings.PROJECT_VERSION)
 
 
 @router.get("/")
@@ -26,7 +28,11 @@ async def index(request: Request):
 @router.post("/shortener")
 async def shorten_url(request: Request, link: str = Form(...)):
 	random_str = ''.join(random.choices(string.ascii_letters + string.digits, k=5))
-	print(random_str)
+	create_new_link({
+		"short_url": random_str,
+		"long_url": link,
+		"count": 0,
+	})
 	return templates.TemplateResponse("shortURL/shortener.html", context={
 		"request": request,
 		"shortened_url": random_str,
@@ -94,9 +100,9 @@ async def counter(request: Request):
 
 @router.post("/url-total-clicks")
 async def total_clicks(request: Request, shortened_url: str = Form(...)):
-	counts = 0
-	print(shortened_url)
-	
+	string = shortened_url.split("/")[-1]
+	counts = read_one_link_count(string)
+	print(counts)
 	return templates.TemplateResponse("shortURL/total_clicks.html", context={
 		"request": request,
 		"counts": counts,
@@ -108,6 +114,22 @@ async def terms_of_service(request: Request):
 	return templates.TemplateResponse("shortURL/terms_of_service.html", context={
 		"request": request,
 	})
+
+
+@router.get("/{short_url}")
+async def read_url(short_url: str):
+	response = read_one_link(short_url)
+	if response:
+		# fetch original link from detabase
+		original_link = response.items[-1].get("long_url")
+		# update the count of the link from detabase
+		update_one_link_count(short_url)
+		# redirect to original link
+		return RedirectResponse(original_link)
+	else:
+		return templates.TemplateResponse("shortURL/404.html", context={
+			"request": request,
+		})
 
 
 @app.exception_handler(StarletteHTTPException)
