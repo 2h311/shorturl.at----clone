@@ -14,12 +14,9 @@ class Settings:
 	PROJECT_TITLE: str = "shortURL-at"
 	PROJECT_VERSION: str = "No Version - Just A Clone"
 
-	PROJECT_DATABASE_KEY = os.getenv("DATABASE_KEY")
-	
+	PROJECT_DATABASE_KEY = os.getenv("DATABASE_KEY")	
 	PROJECT_SHORTLINK_DOCUMENT_DB = os.getenv("SHORTLINKS_DOCUMENT_DB")
 	PROJECT_REPORT_DOCUMENT_DB = os.getenv("REPORTS_DOCUMENT_DB")
-
-
 
 
 settings = Settings()
