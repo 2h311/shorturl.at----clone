@@ -1,6 +1,6 @@
 import deta
-from core.config import settings
 
+from core.config import settings
 from .models import deta_instance
 
 

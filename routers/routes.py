@@ -6,6 +6,7 @@ from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse, RedirectResponse
 
 from core.config import settings
+from db.reports import create_new_report
 from db.links import (
 				create_new_link, 
 				read_one_link, 
@@ -35,7 +36,7 @@ def shorten_url(request: Request, link: str = Form(...)):
 	})
 	return templates.TemplateResponse("shortURL/shortener.html", context={
 		"request": request,
-		"shortened_url": settings.PROJECT_DOMAIN_DEV + random_str,
+		"shortened_url": settings.PROJECT_DOMAIN_PROD + random_str,
 			"long_url": link,
 	})
 
@@ -77,10 +78,7 @@ def report(request: Request):
 
 
 @router.post("/report-malicious-url")
-def report(request: Request, value1: str = Form(...), value2: str = Form(...), math_answer: str = Form(...), message: str = Form(...), malicious_url: str = Form(...)):
-	
-	print(message, malicious_url)
-	
+def report(request: Request, value1: str = Form(...), value2: str = Form(...), math_answer: str = Form(...), message: str = Form(...), malicious_url: str = Form(...)):	
 	answer = int(value1) + int(value2)
 	# if user passes our challenge
 	if answer == int(math_answer):
