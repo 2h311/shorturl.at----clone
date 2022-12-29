@@ -4,13 +4,20 @@ from config import settings
 
 
 deta = Deta(settings.PROJECT_DATABASE_KEY)
-db = deta.Base(settings.PROJECT_DATABASE_NAME)
+
+shortlink_document_db = deta.Base(settings.PROJECT_SHORTLINK_DOCUMENT_DB)
+report_document_db = deta.Base(settings.PROJECT_REPORT_DOCUMENT_DB)
 
 
-class ShortLinkSchema:
+class ShortLinkSchema(Enum):
 	short_url: str
 	long_url: str
 	count: int = 0
+
+
+class ReportedURLs:
+	reported_url: str
+	comment: str
 
 
 def create_new_link(data: ShortLinkSchema):
@@ -18,13 +25,16 @@ def create_new_link(data: ShortLinkSchema):
 
 
 def read_one_link(random_str: str):
-	return db.fetch({"short_url": random_str})
+	response = db.fetch({"short_url": random_str})
+	if response:
+		response = next(response)
+	return response
 
 
 def read_one_link_count(random_str: str):
-	items = db.fetch({"short_url": random_str}).items
-	if items:
-		count = items[0].get("count")
+	response = db.fetch({"short_url": random_str})
+	if response:
+		count = next(response)[0].get("count")
 	else:
 		count = 0
 	return count
@@ -32,8 +42,11 @@ def read_one_link_count(random_str: str):
 
 def update_one_link_count(random_str: str):
 	response = db.fetch({"short_url": random_str})
-	response.items[0]["count"] += 1
-	return db.put(response.items[0], response.items[0]["key"])
+	if response:
+		item = next(response)
+		print("update_one_link_count: ", item)
+		item[0]["count"] += 1
+	return db.put(item[0], item[0]["key"])
 
 
 def delete_one_link():

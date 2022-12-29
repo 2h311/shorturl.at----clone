@@ -23,14 +23,14 @@ app = FastAPI(title=settings.PROJECT_TITLE, version=settings.PROJECT_VERSION)
 
 
 @router.get("/")
-async def index(request: Request):
+def index(request: Request):
 	return templates.TemplateResponse("shortURL/index.html", context={
 		"request": request,
 	})
 
 
 @router.post("/shortener")
-async def shorten_url(request: Request, link: str = Form(...)):
+def shorten_url(request: Request, link: str = Form(...)):
 	random_str = ''.join(random.choices(string.ascii_letters + string.digits, k=5))
 	create_new_link({
 		"short_url": random_str,
@@ -39,20 +39,20 @@ async def shorten_url(request: Request, link: str = Form(...)):
 	})
 	return templates.TemplateResponse("shortURL/shortener.html", context={
 		"request": request,
-		"shortened_url": settings.PROJECT_DOMAIN_DEV + random_str,
-		"long_url": link,
+		"shortened_url": settings.PROJECT_DOMAIN_PROD + random_str,
+			"long_url": link,
 	})
 
 
 @router.get("/contact")
-async def contact(request: Request):
+def contact(request: Request):
 	return templates.TemplateResponse("shortURL/contact.html", context={
 		"request": request,
 	})
 
 
 @router.post("/contact")
-async def contact(request: Request, fullname: str = Form(...), email: str = Form(...), message: str = Form(...)):
+def contact(request: Request, fullname: str = Form(...), email: str = Form(...), message: str = Form(...)):
 	data = {
 		"fullname": fullname,
 		"email": email,
@@ -65,14 +65,14 @@ async def contact(request: Request, fullname: str = Form(...), email: str = Form
 
 
 @router.get("/privacy-policy")
-async def privacy(request: Request):
+def privacy(request: Request):
 	return templates.TemplateResponse("shortURL/privacy.html", context={
 		"request": request,
 	})
 
 
 @router.get("/report-malicious-url")
-async def report(request: Request):
+def report(request: Request):
 	return templates.TemplateResponse("shortURL/report_url.html", context={
 		"request": request, 
 		"value1": random.randint(1, 9),
@@ -81,9 +81,15 @@ async def report(request: Request):
 
 
 @router.post("/report-malicious-url")
-async def report(request: Request, value1: str = Form(...), value2: str = Form(...), math_answer: str = Form(...)):
+def report(request: Request, value1: str = Form(...), value2: str = Form(...), math_answer: str = Form(...), message: str = Form(...), malicious_url: str = Form(...)):
+	
+	print(message, malicious_url)
+	
 	answer = int(value1) + int(value2)
+	# if user passes our challenge
 	if answer == int(math_answer):
+		# send report to backend
+
 		return templates.TemplateResponse("shortURL/report_url.html", context={
 			"request": request,
 			"report_response": "true", 
@@ -96,14 +102,21 @@ async def report(request: Request, value1: str = Form(...), value2: str = Form(.
 
 
 @router.get("/url-click-counter")
-async def counter(request: Request):
+def counter(request: Request):
 	return templates.TemplateResponse("shortURL/click_counter.html", context={
 		"request": request,
 	})
 
 
+@router.get("/terms-of-service")
+def terms_of_service(request: Request):
+	return templates.TemplateResponse("shortURL/terms_of_service.html", context={
+		"request": request,
+	})
+
+
 @router.get("/url-total-clicks")
-async def total_clicks(request: Request, u: str):
+def total_clicks(request: Request, u: str):
 	string = u.split("/")[-1]
 	counts = read_one_link_count(string)
 	print(counts)
@@ -113,19 +126,12 @@ async def total_clicks(request: Request, u: str):
 	})
 
 
-@router.get("/terms-of-service")
-async def terms_of_service(request: Request):
-	return templates.TemplateResponse("shortURL/terms_of_service.html", context={
-		"request": request,
-	})
-
-
 @router.get("/{short_url}")
-async def read_url(request: Request, short_url: str):
-	response = read_one_link(short_url)
-	if response.items:
+def read_url(request: Request, short_url: str):
+	item = read_one_link(short_url)
+	if item != []:
 		# fetch original link from detabase
-		original_link = response.items[-1].get("long_url")
+		original_link = item[0].get("long_url")
 		# update the count of the link from detabase
 		update_one_link_count(short_url)
 		# redirect to original link
@@ -137,7 +143,8 @@ async def read_url(request: Request, short_url: str):
 
 
 @app.exception_handler(StarletteHTTPException)
-async def invalid_routes(request: Request, ecx: StarletteHTTPException):
+def invalid_routes(request: Request, exc: StarletteHTTPException):
+	print(exc)
 	return templates.TemplateResponse("shortURL/404.html", context={
 		"request": request,
 	})
