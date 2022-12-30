@@ -4,7 +4,7 @@ from fastapi.staticfiles import StaticFiles
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from core.config import settings
-from routers.routes import router
+from routers.routes import router, templates
 
 
 def mount_static(app):
@@ -13,13 +13,13 @@ def mount_static(app):
 
 def start_app():
 	app = FastAPI(title=settings.PROJECT_TITLE, version=settings.PROJECT_VERSION)
-	templates = Jinja2Templates(directory="templates")
 	app.include_router(router)
 	mount_static(app)
 	return app
 
 
 app = start_app()
+
 @app.exception_handler(StarletteHTTPException)
 def invalid_routes(request: Request, exc: StarletteHTTPException):
 	print(exc)

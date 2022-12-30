@@ -2,10 +2,11 @@ import string
 import random
 
 from fastapi import Request, APIRouter, Form
-from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.templating import Jinja2Templates
 
 from core.config import settings
+from db.contacts import create_new_contact
 from db.reports import create_new_report
 from db.links import (
 				create_new_link, 
@@ -17,7 +18,6 @@ from db.links import (
 
 router = APIRouter()
 templates = Jinja2Templates(directory="templates")
-
 
 @router.get("/")
 def index(request: Request):
@@ -49,12 +49,12 @@ def contact(request: Request):
 
 
 @router.post("/contact")
-def contact(request: Request, fullname: str = Form(...), email: str = Form(...), message: str = Form(...)):
-	data = {
+def contact(request: Request, fullname: str = Form(...), email: str = Form(...), message: str = Form(...)): 
+	create_new_contact({
 		"fullname": fullname,
 		"email": email,
 		"message": message
-	}
+	})
 	return templates.TemplateResponse("shortURL/contact.html", context={
 		"request": request, 
 		"show_message": True

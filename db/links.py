@@ -10,7 +10,7 @@ db = deta_instance.Base(settings.PROJECT_SHORTLINK_DOCUMENT_DB)
 class ShortLinkSchema:
 	short_url: str
 	long_url: str
-	count: int = 0
+	count: int
 
 
 def create_new_link(data: ShortLinkSchema):
@@ -19,7 +19,9 @@ def create_new_link(data: ShortLinkSchema):
 
 def read_one_link(random_str: str):
 	response = db.fetch({"short_url": random_str})
-	if isinstance(response, deta.base.FetchResponse):
+	if not response.items:
+		return False
+	elif isinstance(response, deta.base.FetchResponse):
 		data = response.items[0].get("long_url", "")
 	else:
 		data = next(response)[0].get("long_url", "")
