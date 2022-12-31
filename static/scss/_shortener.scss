@@ -8,6 +8,12 @@
   margin-bottom: 13.8rem;
   padding: 2rem 5rem;
   font-size: 1.5rem;
+
+  @media only screen and (max-width: $bp-360px) {
+    width: 100%;
+    padding: 1rem 2.5rem;
+    margin-bottom: 10rem;
+  }
 }
 
 .shorturl-row {
@@ -19,6 +25,10 @@
   background-color: #fff;
   box-shadow: 0 2px 3px rgba(0, 0, 0, .15);
   padding: 3rem 5rem;
+
+  @media only screen and (max-width: $bp-360px) {
+    padding: 1.5rem 3rem;
+  }
 
   &__group {
     display: flex;
@@ -45,6 +55,10 @@
     border-bottom-left-radius: 3px;
     border: 1px solid #bbb;
     font-family: inherit;
+
+    @media only screen and (max-width: $bp-360px) {
+      width: 15rem;
+    }
   }
 
   &__btn {
@@ -83,6 +97,13 @@
   border-radius: 3px;
   font-size: 1.2rem;
   font-weight: 500;
+
+  @media only screen and (max-width: $bp-360px) {
+    &:not(:last-child) {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+    }
+  }
 
   &--facebook {
     background-color: #3b5998;

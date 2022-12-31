@@ -19,6 +19,10 @@
   @media only screen and (max-width: $bp-590px) {
     font-size: 4.25rem;
   }
+
+  @media only screen and (max-width: $bp-360px) {
+    font-size: 3.5rem;
+  }
 }
 
 .heading-2 {
@@ -28,11 +32,19 @@
   @media only screen and (max-width: $bp-590px) {
     font-size: 3rem;
   }
+
+  @media only screen and (max-width: $bp-360px) {
+    font-size: 2.25rem;
+  }
 }
 
 .heading-3 {
   color: #505050;
   font-size: 2.4rem;
+
+  @media only screen and (max-width: $bp-360px) {
+    font-size: 2rem;
+  }
 }
 
 .heading-4 {
@@ -47,7 +59,7 @@
   padding: 1.45rem 4.2rem;
   text-align: center;
   width: 69rem;
-  box-shadow: 0 2px 3px rgba(0, 0, 0, .15);
+  box-shadow: 0 2px 6.5px rgba(0, 0, 0, .35);
 
   display: flex;
   flex-direction: column;
@@ -65,10 +77,19 @@
   @media only screen and (max-width: $bp-590px) {
     width: 55rem;
   }
+
+  @media only screen and (max-width: $bp-360px) {
+    width: 34rem;
+    padding: 1.45rem 2rem;
+  }
 }
 
 .main-cta__link {
   font-size: 1.6rem;
+
+  @media only screen and (max-width: $bp-360px) {
+    font-size: 1.45rem;
+  }
 
   &:link,
   &:active,
@@ -85,6 +106,10 @@
     display: inline-block;
     width: 8rem;
     vertical-align: middle;
+
+    @media only screen and (max-width: $bp-360px) {
+      width: 7.5rem;
+    }
   }
 }
 
@@ -115,6 +140,11 @@
       font-size: 1.5rem;
       padding: 1rem 2rem;
     }
+
+    @media only screen and (max-width: $bp-360px) {
+      padding: .85rem;
+      font-size: 1.45rem;
+    }
   }
 
   &--cta:link,
@@ -124,7 +154,6 @@
     width: max-content;
     border-radius: 5px;
   }
-
 }
 
 .form {
@@ -132,6 +161,7 @@
 
   &__group {
     display: flex;
+    font-size: 1.5rem;
     height: 5rem;
   }
 
@@ -148,7 +178,13 @@
 
     @media only screen and (max-width: $bp-590px) {
       width: 32rem;
+      padding: .6rem;
+    }
+
+    @media only screen and (max-width: $bp-360px) {
+      width: 18rem;
       padding: 1rem;
+      font-size: 1.5rem;
     }
   }
 }
@@ -173,10 +209,14 @@
 
     @media only screen and (max-width: $bp-590px) {
       padding: 1.2rem;
-      flex-basis: 50%;
       line-height: 1.2;
       font-size: 1.5rem;
     }
+
+    @media only screen and (max-width: $bp-360px) {
+      flex-basis: 50%;
+    }
+
   }
 
   svg {

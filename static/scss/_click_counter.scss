@@ -7,14 +7,34 @@
   font-size: 1.3rem;
   margin: 0 auto;
 
+  @media only screen and (max-width: $bp-590px) {
+    gap: 3rem;
+  }
+
+  @media only screen and (max-width: $bp-360px) {
+    gap: 2.6rem;
+  }
+
   &__row {
-    min-width: 40rem;
+    width: max-content;
 
     &--main {
       background-color: #fff;
-      box-shadow: 3px 1px 8px rgba(0, 0, 0, .15);
+      box-shadow: 0 2px 6.5px rgba(0, 0, 0, .35);
       padding: 2.5rem 5rem;
       border-radius: 3px;
+
+      @media only screen and (max-width: $bp-590px) {
+        padding: 2rem 2.5rem;
+      }
+
+      @media only screen and (max-width: $bp-360px) {
+        padding: 1.2rem 1rem;
+      }
+    }
+
+    @media only screen and (max-width: $bp-360px) {
+      width: 90%;
     }
   }
 
@@ -28,12 +48,21 @@
       font-size: 1.45rem;
       padding: 1.45rem 1.5rem;
       width: 32rem;
-      display: block;
+      display: inline-block;
       border: 1px solid rgba(0, 0, 0, .15);
       border-top-left-radius: 3px;
       border-bottom-left-radius: 3px;
       outline: none;
       margin-left: -1px;
+
+      @media only screen and (max-width: $bp-590px) {
+        width: 36rem;
+      }
+
+      @media only screen and (max-width: $bp-360px) {
+        padding: .45rem .5rem;
+        width: 18rem;
+      }
     }
 
     &__button {
@@ -45,6 +74,10 @@
       border-bottom-right-radius: 3px;
       font-size: 1.45rem;
       font-weight: 600;
+
+      @media only screen and (max-width: $bp-590px) {
+        padding: 1.2rem;
+      }
     }
   }
 }

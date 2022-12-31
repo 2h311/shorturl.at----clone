@@ -8,6 +8,11 @@
     max-width: 72rem;
     margin: 5rem auto 4.5rem;
     line-height: 1.5;
+
+    @media only screen and (max-width: $bp-660px) {
+      width: 86%;
+      margin: 3rem auto 4.5rem;
+    }
   }
 
   &__list {
@@ -15,7 +20,6 @@
   }
 
   &__item {
-
     svg {
       vertical-align: middle;
       color: #00a0db;

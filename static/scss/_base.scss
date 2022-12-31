@@ -2,6 +2,7 @@ $bp-760px: 47.5em;
 $bp-660px: 41.25em;
 $bp-630px: 39.375em;
 $bp-590px: 36.875em;
+$bp-360px: 22.5em;
 
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900");
@@ -22,6 +23,10 @@ html {
 
 body {
   background-color: #f9f9f9;
+
+  @media only screen and (max-width: $bp-360px) {
+    height: 100vh;
+  }
 }
 
 .container {

@@ -1,5 +1,5 @@
 .invalid {
-  width: max-content;
+  width: 100%;
   color: #222;
   margin: 22vh auto;
 
@@ -8,6 +8,13 @@
   justify-content: center;
   align-items: center;
   gap: 5px;
+
+  @media only screen and (max-width: $bp-360px) {
+    margin: auto;
+    padding-top: 12rem;
+    text-align: center;
+    width: 80%;
+  }
 
   &__link--1 {
     text-decoration: none;

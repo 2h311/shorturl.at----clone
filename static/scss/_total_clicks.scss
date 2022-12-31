@@ -8,6 +8,10 @@
   font-size: 1.35rem;
   color: #272727;
 
+  @media only screen and (max-width: $bp-360px) {
+    width: 90%;
+  }
+
   &__number {
     display: inline-block;
     background-color: #fff;
