@@ -18,8 +18,10 @@ URL Shortener
     <section class="main-section">
       <h2 class="heading-2 u-margin-bottom-small">Paste the URL to be shortened</h2>
       <form class="form" method="POST" action="/shortener">
-        <input type="text" class="form__input" name="link" placeholder="Enter the link here">
-        <button type="submit" class="btn btn--submit">Shorten URL</button>
+        <div class="form__group">
+          <input type="text" class="form__input" name="link" placeholder="Enter the link here">
+          <button type="submit" class="btn btn--submit">Shorten URL</button>
+        </div>
       </form>
       <p class="main__text">
         <span>ShortURL.at is a free tool to shorten a URL or reduce a link</span><br>
@@ -66,7 +68,7 @@ URL Shortener
     </section>
   </div>
 
-  <div class="row u-margin-bottom-huge">
+  <div class="row u-margin-bottom-medium">
     <section class="icon-box">
       <div class="icon-box__inner">
         <i class="fa-solid fa-hand-point-left icon-box__icon"></i>
